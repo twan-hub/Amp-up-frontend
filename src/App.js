@@ -11,20 +11,21 @@ function App() {
     e.preventDefault();
     try {
   let res = await fetch("http://localhost:8080/login", {
-    method: "POST",
     crossDomain:true,
-    headers:{'Content-Type':'application/json'},
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
     body: JSON.stringify({
-      username: username,
-      password: password,
+      "username": username,
+      "password": password,
     }),
   });
   let resJson = await res.json();
       if (res.status === 200) {
         setUsername("");
         setPassword("");
-        setMessage("User created successfully");
+        console.log(resJson);
       } else {
+        console.log(resJson);
         setMessage("Some error occured");
       }
     } catch (err) {
