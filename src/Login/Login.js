@@ -34,7 +34,8 @@ function Login() {
     };
     return (
         <div>
-            <h2>Login Form</h2>
+            <body>
+                <h2>Login Form</h2>
 
             <form onSubmit={handleSubmit}>
 
@@ -43,25 +44,27 @@ function Login() {
                     <input type="text"
                         value={username}
                         placeholder="Username"
-                        onChange={(e) => setUsername(e.target.value)} required/>
+                        onChange={(e) => setUsername(e.target.value)} required />
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password"
-                            value={password}
-                            placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)} required/>
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password"
+                        value={password}
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)} required />
 
-                            <button type="submit">Login</button>
-                        </div>
-
-                        <div clasName="container" style={{backgroundColor:'grey'}}>
-                            <button type=" button" className="cancelbtn">Cancel</button>
-                            <span className="psw">Forgot <a href="#">password?</a></span>
-                        </div>
-                        </form>
+                    <button type="submit">Login</button>
                 </div>
 
-                );
-                }
+                <div className="container" style={{ backgroundColor: 'grey' }}>
+                    <button type=" button" className="cancelbtn">Cancel</button>
+                    <span className="psw">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
+            </body>
+            
+        </div>
 
-                export default Login;
+    );
+}
+
+export default Login;

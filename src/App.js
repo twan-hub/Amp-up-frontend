@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import Login from './Login/Login'
 
 function App() {
   const [username,setUsername] = useState("");
@@ -34,24 +35,7 @@ function App() {
   };
   return (
       <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={username}
-            placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="text"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Login</button>
-
-          <div className="message">{message ? <p>{message}</p> : null}</div>
-  
-        </form>
+        <Login/>
       </div>
     );
 }
