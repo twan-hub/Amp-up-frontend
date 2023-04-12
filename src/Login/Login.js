@@ -1,5 +1,6 @@
 import './Login.css';
 import { useState } from 'react';
+import { ReactPropTypes } from 'react';
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -18,14 +19,16 @@ function Login() {
                     password: password,
                 }),
             });
+            
 
-            let resJson = await res.json;
+            let responseJson = await res.json();
             if (res.status === 200) {
                 setUsername("");
                 setPassword("");
-                console.log(resJson);
+                console.log(responseJson);
+                console.log("what")
             } else {
-                console.log(resJson);
+                console.log(responseJson);
                 setMessage("Some error occured");
             }
         } catch (err) {
