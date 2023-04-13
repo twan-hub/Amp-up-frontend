@@ -1,43 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import Login from './Login/Login'
+import Login from './Login/Login';
+import Dashboard from './Dashboard';
+import Preferences from './Prefernces';
+import { 
+  BrowserRouter, 
+  Route, 
+  Switch 
+} from 'react-router-dom';
 
 function App() {
-  const [username,setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [token,setToken] = useState();
+  
+  if (!token || token.token == "Password or Username") {
+    console.log(token);
+    return <Login setToken={setToken} />
+  }
+  console.log(token)
 
-  let handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-  let res = await fetch("http://localhost:8080/login", {
-    crossDomain:true,
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({
-      "username": username,
-      "password": password,
-    }),
-  });
-  let resJson = await res.json();
-      if (res.status === 200) {
-        setUsername("");
-        setPassword("");
-        console.log(resJson);
-      } else {
-        console.log(resJson);
-        setMessage("Some error occured");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  return (
-      <div>
-        <Login/>
-      </div>
-    );
+  return(
+    <div className="wrapper">
+      <h1>Application</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/preferences">
+            <Preferences />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
