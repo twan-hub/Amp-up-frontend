@@ -9,20 +9,34 @@ import {
   Route, 
   Switch 
 } from 'react-router-dom';
+import useToken from './useToken';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+
+// function setToken(userToken) {
+//   sessionStorage.setItem('token', JSON.stringify(userToken));
+// }
+
+// function getToken() {
+//   const tokenString = sessionStorage.getItem('token');
+//   const userToken = JSON.parse(tokenString);
+//   return userToken?.token
+// }
 
 function App() {
-  const [token,setToken] = useState();
+  const { token, setToken } = useToken();
   
-  if (!token || token.token == "Password or Username") {
+  if (!token || token !== "Successful Login") {
     console.log(token);
     return <Login setToken={setToken} />
   }
   console.log(token)
 
-  return(
+  return (
     <div className="wrapper">
       <h1>Application</h1>
+      
       <BrowserRouter>
+      <Redirect from="/" to="/dashboard" />
         <Switch>
           <Route path="/dashboard">
             <Dashboard />
